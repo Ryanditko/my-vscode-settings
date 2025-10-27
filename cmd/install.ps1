@@ -36,7 +36,7 @@ Write-ColorOutput @"
 "@ -Color Cyan
 
 # Verificar se o VS Code está instalado
-Write-ColorOutput "`n[1/4] Verificando instalação do VS Code..." -Color Yellow
+Write-ColorOutput "`n[1/3] Verificando instalação do VS Code..." -Color Yellow
 $codeCommand = Get-Command code -ErrorAction SilentlyContinue
 
 if (-not $codeCommand) {
@@ -49,9 +49,9 @@ Write-ColorOutput "✅ VS Code encontrado: $($codeCommand.Source)" -Color Green
 
 # Caminhos
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$ExtensionsFile = Join-Path $ScriptDir "extensions.txt"
-$SettingsFile = Join-Path $ScriptDir "settings.json"
-$KeybindingsFile = Join-Path $ScriptDir "keybindings.json"
+$RootDir = Split-Path -Parent $ScriptDir
+$ExtensionsFile = Join-Path $RootDir "docs\extensions.txt"
+$SettingsFile = Join-Path $RootDir "json\settings\settings.json"
 $VSCodeUserDir = "$env:APPDATA\Code\User"
 
 # Criar diretório do usuário se não existir
@@ -60,7 +60,7 @@ if (-not (Test-Path $VSCodeUserDir)) {
 }
 
 # Instalar extensões
-Write-ColorOutput "`n[2/4] Instalando extensões..." -Color Yellow
+Write-ColorOutput "`n[2/3] Instalando extensões..." -Color Yellow
 
 if (Test-Path $ExtensionsFile) {
     $extensions = Get-Content $ExtensionsFile | Where-Object { $_ -and $_.Trim() -ne "" }
@@ -90,7 +90,7 @@ if (Test-Path $ExtensionsFile) {
 }
 
 # Copiar settings.json
-Write-ColorOutput "`n[3/4] Copiando configurações (settings.json)..." -Color Yellow
+Write-ColorOutput "`n[3/3] Copiando configurações (settings.json)..." -Color Yellow
 
 if (Test-Path $SettingsFile) {
     $destinationSettings = Join-Path $VSCodeUserDir "settings.json"
@@ -106,25 +106,6 @@ if (Test-Path $SettingsFile) {
     Write-ColorOutput "   ✅ settings.json copiado com sucesso!" -Color Green
 } else {
     Write-ColorOutput "   ⚠️  Arquivo settings.json não encontrado!" -Color Yellow
-}
-
-# Copiar keybindings.json
-Write-ColorOutput "`n[4/4] Copiando atalhos de teclado (keybindings.json)..." -Color Yellow
-
-if (Test-Path $KeybindingsFile) {
-    $destinationKeybindings = Join-Path $VSCodeUserDir "keybindings.json"
-    
-    # Backup do arquivo existente
-    if (Test-Path $destinationKeybindings) {
-        $backupFile = Join-Path $VSCodeUserDir "keybindings.json.backup.$(Get-Date -Format 'yyyyMMdd_HHmmss')"
-        Copy-Item $destinationKeybindings $backupFile
-        Write-ColorOutput "   📦 Backup criado: keybindings.json.backup" -Color Cyan
-    }
-    
-    Copy-Item $KeybindingsFile $destinationKeybindings -Force
-    Write-ColorOutput "   ✅ keybindings.json copiado com sucesso!" -Color Green
-} else {
-    Write-ColorOutput "   ⚠️  Arquivo keybindings.json não encontrado!" -Color Yellow
 }
 
 # Finalização

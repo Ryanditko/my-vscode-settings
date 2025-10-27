@@ -1,109 +1,182 @@
 # VS Code Settings & Extensions
 
-Este repositório contém todas as minhas configurações, extensões e snippets do Visual Studio Code para facilitar a migração e sincronização entre diferentes máquinas.
+Repositório centralizado para gerenciar e sincronizar configurações, extensões e preferências do Visual Studio Code entre diferentes máquinas.
 
-## 📦 O que está incluído
+## Estrutura do Projeto
 
-- ✅ Lista de extensões instaladas
-- ✅ Configurações do VS Code (`settings.json`)
-- ✅ Atalhos de teclado personalizados (`keybindings.json`)
-- ✅ Scripts de instalação automatizada
-- ✅ Snippets personalizados
+```
+vscode-settings/
+├── cmd/              # Scripts de instalação e backup
+│   ├── install.ps1   # Instalador para Windows
+│   ├── install.sh    # Instalador para Linux/MacOS
+│   ├── backup.ps1    # Backup para Windows
+│   └── backup.sh     # Backup para Linux/MacOS
+├── docs/             # Documentação e listas
+│   └── extensions.txt    # Lista de extensões instaladas
+├── json/             # Arquivos de configuração
+│   └── settings/
+│       └── settings.json # Configurações do VS Code
+└── README.md
+```
 
-## 🚀 Instalação Rápida
+## Instalação
 
 ### Windows (PowerShell)
 
 ```powershell
 # Clone o repositório
-git clone https://github.com/SEU_USUARIO/vscode-settings.git
-cd vscode-settings
+git clone https://github.com/Ryanditko/my-vscode-settings.git
+cd my-vscode-settings
 
-# Execute o script de instalação
-.\install.ps1
+# Execute o instalador
+.\cmd\install.ps1
 ```
 
 ### Linux/MacOS
 
 ```bash
 # Clone o repositório
-git clone https://github.com/SEU_USUARIO/vscode-settings.git
-cd vscode-settings
+git clone https://github.com/Ryanditko/my-vscode-settings.git
+cd my-vscode-settings
 
-# Dê permissão de execução e execute o script
-chmod +x install.sh
-./install.sh
+# Execute o instalador
+chmod +x cmd/install.sh
+./cmd/install.sh
 ```
 
-## 📋 Instalação Manual
+Após a instalação, reinicie o VS Code para aplicar todas as configurações.
 
-### 1. Instalar Extensões
+## Atualizar Configurações
 
-#### Windows (PowerShell)
-```powershell
-Get-Content extensions.txt | ForEach-Object { code --install-extension $_ }
-```
-
-#### Linux/MacOS (Bash)
-```bash
-cat extensions.txt | xargs -L 1 code --install-extension
-```
-
-### 2. Copiar Configurações
-
-Copie o conteúdo de `settings.json` para:
-- **Windows**: `%APPDATA%\Code\User\settings.json`
-- **Linux**: `~/.config/Code/User/settings.json`
-- **MacOS**: `~/Library/Application Support/Code/User/settings.json`
-
-### 3. Copiar Atalhos de Teclado (Opcional)
-
-Se você tem atalhos personalizados, copie `keybindings.json` para o mesmo diretório acima.
-
-## 🔄 Atualizar suas Configurações
-
-Para atualizar este repositório com suas configurações atuais, execute:
+Para atualizar o repositório com suas configurações atuais:
 
 ### Windows
 ```powershell
-.\backup.ps1
+.\cmd\backup.ps1
 ```
 
 ### Linux/MacOS
 ```bash
-./backup.sh
+chmod +x cmd/backup.sh
+./cmd/backup.sh
 ```
 
-## 📝 Extensões Incluídas
+Depois execute:
+```bash
+git add .
+git commit -m "Atualizar configurações"
+git push
+```
 
-Total de extensões: **73**
+## Extensões Incluídas
 
-### Principais categorias:
-- 🎨 **Temas**: Dracula, Cursor Dark, AMOLED Black, etc.
-- 🐍 **Python**: Python, Pylance, Debugpy, Jupyter
-- ☕ **Java**: Java Extension Pack, Maven, Gradle
-- 🗄️ **Database**: MSSQL, MongoDB snippets
-- 🎯 **Git**: GitLens, Git Graph, Git History
-- 🎭 **AI**: GitHub Copilot, DeepSeek
-- 🛠️ **Utilitários**: REST Client, Docker, Live Server
-- 💅 **Formatação**: Prettier, Auto Close Tag
-- 📊 **Visualização**: PDF viewer, Rainbow CSV
+Total: **73 extensões**
 
-## ⚙️ Principais Configurações
+### Categorias Principais
 
-- Word wrap habilitado
-- Auto save após delay
-- Activity bar no topo
-- Material Icon Theme
-- Formatação automática com Prettier para JS/TS
+**Temas e Aparência**
+- Dracula Theme, Cursor Dark, AMOLED Black
+- Material Icon Theme, Easy Icons, VSCode Icons
 
-## 🤝 Contribuindo
+**Desenvolvimento Python**
+- Python, Pylance, Debugpy
+- Jupyter Notebook e extensões relacionadas
 
-Sinta-se à vontade para sugerir melhorias ou compartilhar suas próprias configurações!
+**Desenvolvimento Java**
+- Java Extension Pack, Maven, Gradle, Oracle Java
 
-## 📄 Licença
+**Banco de Dados**
+- MSSQL Tools
+- MongoDB Snippets
 
-MIT License - Use como quiser!
+**Git e Controle de Versão**
+- GitLens, Git Graph, Git History
+- Open in GitHub
+
+**Inteligência Artificial**
+- GitHub Copilot & Copilot Chat
+- DeepSeek integrations
+
+**Ferramentas Web**
+- Live Server (2 variantes)
+- REST Client, Edge DevTools
+- Tailwind CSS IntelliSense
+
+**Qualidade de Código**
+- Prettier, HTMLHint, StyleLint
+- Code Spell Checker
+
+**Utilitários**
+- Docker & Containers, TODO Tree
+- Better Comments, Auto Close Tag
+- DotENV, Rainbow CSV, CodeSnap
+- PDF Viewer, Resource Monitor
+- Discord Presence
+
+## Principais Configurações
+
+```json
+{
+  "editor.wordWrap": "on",
+  "files.autoSave": "afterDelay",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.compactFolders": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Cursor Dark High Contrast",
+  "workbench.activityBar.location": "top"
+}
+```
+
+### Formatadores Configurados
+- **JavaScript/TypeScript**: Prettier
+- **CSS**: VS Code padrão
+
+### Python
+- Interpretador padrão configurado
+- Auto imports habilitado (Tabnine)
+
+## Instalação Manual
+
+Se preferir instalar manualmente:
+
+```powershell
+# Windows - Instalar extensões
+Get-Content docs\extensions.txt | ForEach-Object { code --install-extension $_ }
+
+# Windows - Copiar configurações
+Copy-Item json\settings\settings.json $env:APPDATA\Code\User\settings.json
+```
+
+```bash
+# Linux/MacOS - Instalar extensões
+cat docs/extensions.txt | xargs -L 1 code --install-extension
+
+# Linux/MacOS - Copiar configurações
+cp json/settings/settings.json ~/.config/Code/User/settings.json
+```
+
+## Solução de Problemas
+
+### Windows: Erro ao executar script
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+### Extensão específica falhou
+Instale manualmente:
+```powershell
+code --install-extension PUBLISHER.EXTENSION-NAME
+```
+
+### Configurações não foram aplicadas
+1. Feche completamente o VS Code
+2. Execute o script novamente
+3. Reinicie o VS Code
+
+## Licença
+
+MIT License - Veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 

@@ -37,9 +37,9 @@ fi
 
 # Obter o diretório do script
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-EXTENSIONS_FILE="$SCRIPT_DIR/extensions.txt"
-SETTINGS_FILE="$SCRIPT_DIR/settings.json"
-KEYBINDINGS_FILE="$SCRIPT_DIR/keybindings.json"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
+EXTENSIONS_FILE="$ROOT_DIR/docs/extensions.txt"
+SETTINGS_FILE="$ROOT_DIR/json/settings/settings.json"
 
 # Backup das extensões
 echo -e "\n${YELLOW}[2/3] Fazendo backup da lista de extensões...${NC}"
@@ -61,14 +61,6 @@ if [ -f "$SOURCE_SETTINGS" ]; then
     echo -e "${GREEN}✅ settings.json copiado!${NC}"
 else
     echo -e "${YELLOW}⚠️  settings.json não encontrado!${NC}"
-fi
-
-SOURCE_KEYBINDINGS="$VSCODE_USER_DIR/keybindings.json"
-if [ -f "$SOURCE_KEYBINDINGS" ]; then
-    cp "$SOURCE_KEYBINDINGS" "$KEYBINDINGS_FILE"
-    echo -e "${GREEN}✅ keybindings.json copiado!${NC}"
-else
-    echo -e "${YELLOW}⚠️  keybindings.json não encontrado!${NC}"
 fi
 
 # Finalização

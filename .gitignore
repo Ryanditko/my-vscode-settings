@@ -19,7 +19,3 @@ desktop.ini
 # IDE
 .vscode/
 .idea/
-
-# Configurações locais específicas (descomente se não quiser versionar)
-# settings.json
-# keybindings.json

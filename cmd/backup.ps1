@@ -47,9 +47,9 @@ Write-ColorOutput "✅ VS Code encontrado!" -Color Green
 
 # Caminhos
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$ExtensionsFile = Join-Path $ScriptDir "extensions.txt"
-$SettingsFile = Join-Path $ScriptDir "settings.json"
-$KeybindingsFile = Join-Path $ScriptDir "keybindings.json"
+$RootDir = Split-Path -Parent $ScriptDir
+$ExtensionsFile = Join-Path $RootDir "docs\extensions.txt"
+$SettingsFile = Join-Path $RootDir "json\settings\settings.json"
 $VSCodeUserDir = "$env:APPDATA\Code\User"
 
 # Backup das extensões
@@ -73,14 +73,6 @@ if (Test-Path $sourceSettings) {
     Write-ColorOutput "✅ settings.json copiado!" -Color Green
 } else {
     Write-ColorOutput "⚠️  settings.json não encontrado!" -Color Yellow
-}
-
-$sourceKeybindings = Join-Path $VSCodeUserDir "keybindings.json"
-if (Test-Path $sourceKeybindings) {
-    Copy-Item $sourceKeybindings $KeybindingsFile -Force
-    Write-ColorOutput "✅ keybindings.json copiado!" -Color Green
-} else {
-    Write-ColorOutput "⚠️  keybindings.json não encontrado!" -Color Yellow
 }
 
 # Finalização
