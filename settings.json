@@ -1,0 +1,39 @@
+{
+    "editor.wordWrap": "on",
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDelete": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.defaultInterpreterPath": "C:\\Users\\51063639\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "python.createEnvironment.trigger": "off",
+    "redhat.telemetry.enabled": true,
+    "tabnine.experimentalAutoImports": true,
+    "mssql.enableRichExperiences": true,
+    "explorer.compactFolders": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.colorTheme": "Cursor Dark High Contrast",
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.html": "default"
+    },
+    "vscode-edge-devtools.webhintInstallNotification": true,
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "workbench.activityBar.location": "top",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "glassit.alpha": 220,
+    "mssql.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "E99F3B87-B1C1-4891-A3DB-4D60E6409D8A"
+        }
+    ],
+    "explorer.confirmDragAndDrop": false
+}
