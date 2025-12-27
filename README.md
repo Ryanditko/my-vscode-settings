@@ -180,4 +180,4 @@ MIT License - Veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 
-**Última atualização**: Outubro 2025
+**Última atualização**: Dezembro 2025
